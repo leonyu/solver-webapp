@@ -1,18 +1,30 @@
 
-import bitwise_utility
+import power_of_twos
 
 
 class ModularExponent:
-    def compute(base, exponent, modulus):
-        exp_mods = [1, base % modulus]
-        while (2 ** (len(exp_mods) - 1)) < base:
-            modded = exp_mods[-1]
-            exp_mods.append(modded * modded % modulus)
-        return exp_mods
-
     def __init__(self, base, modulus):
         self.base = base
         self.modulus = modulus
+        self.cache = {
+            0: 1,
+            1: base % modulus
+        }
 
-    def power(self, exponent):
-      
+    def compute(self, exponent):
+        if exponent in self.cache:
+            return self.cache[exponent]
+        elif power_of_twos.is_power_of_two(exponent):
+            h = self.compute(exponent / 2)
+            return h * h % self.modulus
+        else:
+            power_of_twos_split = power_of_twos.split(exponent)
+            result = 1
+            for exp in power_of_twos_split:
+                result *= self.compute(exp)
+            return result % self.modulus
+
+    @staticmethod
+    def exp(base, exponent, modulus):
+        instance = ModularExponent(base, modulus)
+        return instance.compute(exponent)
