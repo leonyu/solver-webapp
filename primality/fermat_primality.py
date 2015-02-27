@@ -20,6 +20,8 @@ class FermatPrimality:
 
         for i in xrange(0, ITERATIONS):
             a = random.randint(2, p - 1)
+            fermat = FermatPrimality.fermat(p, a)
+            print a, fermat
             if FermatPrimality.fermat(p, a) != 1:
                 return False
         return True
