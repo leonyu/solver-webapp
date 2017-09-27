@@ -24,15 +24,13 @@ jobs:
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "requirements.txt" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
 
       - run:
           name: install dependencies
           command: |
             virtualenv venv
             . venv/bin/activate
-            # pip install -r requirements.txt
+            pip install -r requirements.txt
 
       - save_cache:
           paths:
@@ -44,7 +42,7 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
-            python -m unittest discover -s tests 
+            nosetests
 
       - store_artifacts:
           path: test-reports
