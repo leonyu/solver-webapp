@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python2
 
 import sys
 
@@ -7,7 +7,7 @@ from primality.fermat_primality import FermatPrimality
 
 def main(argv):
     if len(argv) == 0:
-        print 'Please submit a number'
+        print 'Please provide a number as argument'
     else:
         test_target = long(argv[0])
         if FermatPrimality.is_prime(test_target):
