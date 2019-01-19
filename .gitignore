@@ -1,6 +1,6 @@
 
-# Created by https://www.gitignore.io/api/flask,python
-# Edit at https://www.gitignore.io/?templates=flask,python
+# Created by https://www.gitignore.io/api/flask,python,visualstudiocode
+# Edit at https://www.gitignore.io/?templates=flask,python,visualstudiocode
 
 ### Flask ###
 instance/*
@@ -175,4 +175,15 @@ dmypy.json
 ### Python Patch ###
 .venv/
 
-# End of https://www.gitignore.io/api/flask,python
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+
+# End of https://www.gitignore.io/api/flask,python,visualstudiocode

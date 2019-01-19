@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+  <title>leonyu.net</title>
+
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo=">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}" />
+</head>
+
+<body>
+  <div class="page-container">
+    <div class="header margin-restraint">
+      <h2>Equation Solver</h2>
+    </div>
+    <div class="content margin-restraint">
+      <form action="/api/solve" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <div>
+          <textarea name="equations">x + y * y = z / a</textarea>
+        </div>
+        <div>
+          <label>Solve for:<input type="text" name="target" value="a"></label>
+        </div>
+        <div>
+          <input type="submit" value="Solve">
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="footer">
+    (c) 2018 |
+    <a href="mailto:leon@leonyu.net">leon@leonyu.net</a>
+  </div>
+</body>
+
+</html>
