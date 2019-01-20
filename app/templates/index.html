@@ -20,7 +20,6 @@
     </div>
     <div class="content margin-restraint">
       <form action="/api/solve" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
         <div>
           <textarea name="equation">x + y * y = z / a</textarea>
         </div>

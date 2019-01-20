@@ -1,12 +1,9 @@
 
 from flask import Flask, url_for, render_template, request, jsonify
-from flask_wtf.csrf import CSRFProtect
 
 from solver import solve_for_variable, convert_equation, convert_variable
 
 app = Flask(__name__)
-csrf = CSRFProtect(app)
-app.secret_key = b'\n$[\xf9\xb3\xf8\xbc\xed\xf8\x93\x9e\x1c\x87\x86\xc2\xec'
 
 @app.route('/')
 def root():
