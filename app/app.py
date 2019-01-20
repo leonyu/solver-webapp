@@ -35,13 +35,13 @@ def api_solve():
 
     solutions = solve(equations, target)
     if not solutions:
-        return jsonify({ 'success': False, 'solutions': str(solutions), 'equations': list(map(lambda s: str(s), equations)), 'target': str(target) })
+        return jsonify({ 'success': False, 'message': 'No solutions', 'solutions': str(solutions), 'equations': list(map(lambda s: str(s), equations)), 'target': str(target) })
     elif target in solutions:
-        return jsonify({ 'success': True, 'solutions': str(solutions[target]), 'equations': list(map(lambda s: str(s), equations)), 'target': str(target) })
+        return jsonify({ 'success': True, 'message': 'OK', 'solutions': str(solutions[target]), 'equations': list(map(lambda s: str(s), equations)), 'target': str(target) })
     elif type(solutions) == list:
-        return jsonify({ 'success': False, 'message': 'Multiple solutions or solutions with imaginary components', 'solutions': list(map(lambda s: str(s), solutions)), 'equations': list(map(lambda s: str(s), equations)), 'target': str(target) })
+        return jsonify({ 'success': False, 'message': 'Multiple solutions or solution contains imaginary components', 'solutions': list(map(lambda s: str(s), solutions)), 'equations': list(map(lambda s: str(s), equations)), 'target': str(target) })
     else:
-        return jsonify({ 'success': False, 'solutions': str(solutions), 'equations': list(map(lambda s: str(s), equations)), 'target': str(target) })
+        return jsonify({ 'success': False, 'message': 'Unexpected solution', 'solutions': str(solutions), 'equations': list(map(lambda s: str(s), equations)), 'target': str(target) })
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
