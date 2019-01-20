@@ -22,17 +22,16 @@
       <form action="/api/solve" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
         <div>
-          <textarea name="equations">x + y * y = z / a</textarea>
+          <textarea name="equation">x + y * y = z / a</textarea>
         </div>
         <div>
           <label>Solve for:<input type="text" name="target" value="a"></label>
         </div>
         <div>
-          <input type="submit" value="Solve">
+          <input type="submit" value="Solve"> <span class="message"></span>
         </div>
       </form>
-      <div class="message"></div>
-      <div class="solutions"></div>
+      <p class="solution"></p>
     </div>
   </div>
   <div class="footer">

@@ -1,7 +1,7 @@
 
 import os
-from typing import List
-from sympy import symbols, Eq, solve, sympify, Symbol
+from typing import List, Dict
+from sympy import symbols, Eq, sympify, Symbol, solve
 from flask import Flask, url_for, render_template, request, jsonify
 from flask_wtf.csrf import CSRFProtect
 
@@ -9,8 +9,52 @@ app = Flask(__name__)
 csrf = CSRFProtect(app)
 app.secret_key = os.urandom(16)
 
-def splitAndTrimLines(equationLines: str) -> List[str]:
-    return map(lambda s: s.strip(), filter(lambda s: s and not s.isspace(), equationLines.splitlines()))
+
+def convert_variable(input: str) -> Symbol:
+    if not input or input.isspace():
+        return None
+    try:
+        return symbols(input)
+    except:
+        return None
+
+def convert_equation(input: str) -> Eq:
+    if not input or input.isspace():
+        return None
+    lineSplit = input.split('=')
+    if len(lineSplit) != 2:
+        return None # raise Exception('Line does not contain a valid equation')
+    lhs = lineSplit[0].strip()
+    rhs = lineSplit[1].strip()
+    if not lhs or not rhs:
+        return None # raise Exception('LHS and RHS of an equation must not be empty')
+    return Eq(sympify(lhs), sympify(rhs))
+
+def create_solution_json(equation: Eq, target: Symbol, solution: list) -> Dict:
+    print(type(solution))
+    equation_text = str(equation)
+    variable_text = str(target)
+    solution_list = list(map(lambda s: str(s), solution))
+    if len(solution_list) == 0:
+        message = 'No solutions'
+    elif len(solution_list) > 1:
+        message = 'There are multiple solutions'
+    else:
+        message = 'OK'
+    return {
+        "equation": equation_text,
+        "target": variable_text,
+        "success": len(solution_list) == 1,
+        "solution": solution_list,
+        "message": message,
+    }
+
+def solve_for_variable(target: Symbol, equation: Eq) -> Dict:
+    try:
+        solution = solve(equation, target)
+    except NotImplementedError:
+        return create_solution_json(equation, target, [])
+    return create_solution_json(equation, target, solution)
 
 @app.route('/')
 def root():
@@ -18,30 +62,13 @@ def root():
 
 @app.route('/api/solve', methods=['POST'])
 def api_solve():
-    if not request.form.get('equations') or not request.form.get('target'):
-        return jsonify({ 'success': False, 'message': 'Must provide both equations and target' })
+    target = convert_variable(request.form.get('target'))
+    equation = convert_equation(request.form.get('equation'))
+    if equation is None or target is None:
+        return jsonify({ 'success': False, 'message': 'Must provide valid equation and target variable' })
 
-    try:
-        target = symbols(request.form.get('target'))
-    except Exception as error:
-        return jsonify({ 'success': False, 'message': 'Unable to parse target variable', 'error': str(error) })
-    if type(target) != Symbol and len(target) > 1:
-        return jsonify({ 'success': False, 'message': 'Cannot target more than one variable' })
-    equationText = splitAndTrimLines(request.form['equations'])
-    try:
-        equations = list(map(lambda eqStr: Eq(*map(sympify, eqStr.split('='))), equationText))
-    except Exception as error:
-        return jsonify({ 'success': False, 'message': 'Unable to parse equations', 'error': str(error) })
-
-    solutions = solve(equations, target)
-    if not solutions:
-        return jsonify({ 'success': False, 'message': 'No solutions', 'solutions': str(solutions), 'equations': list(map(lambda s: str(s), equations)), 'target': str(target) })
-    elif target in solutions:
-        return jsonify({ 'success': True, 'message': 'OK', 'solutions': str(solutions[target]), 'equations': list(map(lambda s: str(s), equations)), 'target': str(target) })
-    elif type(solutions) == list:
-        return jsonify({ 'success': False, 'message': 'Multiple solutions or solution contains imaginary components', 'solutions': list(map(lambda s: str(s), solutions)), 'equations': list(map(lambda s: str(s), equations)), 'target': str(target) })
-    else:
-        return jsonify({ 'success': False, 'message': 'Unexpected solution', 'solutions': str(solutions), 'equations': list(map(lambda s: str(s), equations)), 'target': str(target) })
+    result = solve_for_variable(target, equation)
+    return jsonify(result)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
