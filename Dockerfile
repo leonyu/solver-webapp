@@ -10,10 +10,8 @@ WORKDIR /app
 
 RUN pip3 install --no-cache-dir -r requirements.txt
 
+COPY ./uwsgi.ini /uwsgi.ini
+
 EXPOSE 5000
 
-CMD [ "uwsgi", "--socket", "0.0.0.0:5000", \
-               "--uid", "uwsgi", "--master", \
-               "--plugins", "python3", \
-               "--protocol", "uwsgi", \
-               "--wsgi", "main:application" ]
+CMD [ "uwsgi", "--ini", "/uwsgi.ini" ]
