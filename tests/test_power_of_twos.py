@@ -5,6 +5,9 @@ import primality.power_of_twos as power_of_twos
 
 class TestPowerOfTwos(unittest.TestCase):
     def test_split_by_powers_of_two(self):
+        self.assertSequenceEqual(power_of_twos.split_by_powers_of_two(-1), [])
+        self.assertSequenceEqual(power_of_twos.split_by_powers_of_two(0), [])
+        self.assertSequenceEqual(power_of_twos.split_by_powers_of_two(1), [1])
         self.assertSequenceEqual(power_of_twos.split_by_powers_of_two(2), [2])
         self.assertSequenceEqual(power_of_twos.split_by_powers_of_two(3), [1, 2])
         self.assertSequenceEqual(power_of_twos.split_by_powers_of_two(4), [4])
