@@ -6,15 +6,11 @@ RUN apk add --no-cache \
 
 RUN pip3 install pipenv
 
-COPY ./Pipfile /Pipfile
-COPY ./Pipfile.lock /Pipfile.lock
+COPY . /app
+WORKDIR /app
 
 RUN pipenv install --system --deploy
 
-COPY uwsgi.ini /uwsgi.ini
 EXPOSE 5000
 
-COPY ./app /app
-WORKDIR /app
-
-CMD [ "uwsgi", "--ini", "/uwsgi.ini" ]
+CMD [ "uwsgi", "--ini", "/app/uwsgi.ini" ]

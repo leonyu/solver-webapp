@@ -1,7 +1,7 @@
 
 from flask import Flask, render_template, request, jsonify
 
-from solver import solve_for_variable, convert_equation, convert_variable
+from .solver import solve_for_variable, convert_equation, convert_variable
 
 app = Flask(__name__)
 
@@ -23,7 +23,3 @@ def api_solve():
 
     result = solve_for_variable(target, equation)
     return jsonify(result)
-
-
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')

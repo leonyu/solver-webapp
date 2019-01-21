@@ -1,6 +1,6 @@
 import unittest
 from sympy import Symbol, Eq
-from app.solver import solve_for_variable, convert_equation, convert_variable
+from webapp.solver import solve_for_variable, convert_equation, convert_variable
 
 
 class TestAppMethods(unittest.TestCase):

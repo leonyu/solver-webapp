@@ -39,13 +39,13 @@ jobs:
       - run:
           name: run lint
           command: |
-            pipenv run pylint app
+            pipenv run pylint webapp
             pipenv run pylint tests
 
       - run:
           name: run tests
           command: |
-            pipenv run pytest --cov=app tests/ --cov-report html
+            pipenv run pytest --cov=webapp tests/ --cov-report html
 
       - store_artifacts:
           path: htmlcov
