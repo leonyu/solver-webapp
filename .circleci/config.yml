@@ -37,13 +37,18 @@ jobs:
           key: v1-dependencies-{{ checksum "Pipfile.lock" }}
         
       - run:
-          name: run lint
+          name: pipenv check
+          command: |
+            pipenv check
+
+      - run:
+          name: pylint
           command: |
             pipenv run pylint primality
             pipenv run pylint tests
 
       - run:
-          name: run tests
+          name: pytest
           command: |
             pipenv run pytest --cov=primality tests/ --cov-report html
 
