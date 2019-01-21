@@ -36,7 +36,12 @@ jobs:
             - ./.venv
           key: v1-dependencies-{{ checksum "Pipfile.lock" }}
 
-      # run tests!
+      - run:
+          name: run lint
+          command: |
+            pipenv run pylint app
+            pipenv run pylint tests
+
       - run:
           name: run tests
           command: |

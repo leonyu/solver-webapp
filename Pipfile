@@ -6,6 +6,8 @@ verify_ssl = true
 [dev-packages]
 nose = "*"
 uwsgi-tools = "*"
+pylint = "*"
+autopep8 = "*"
 
 [packages]
 sympy = "*"
