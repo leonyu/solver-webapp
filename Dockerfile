@@ -11,10 +11,10 @@ COPY ./Pipfile.lock /Pipfile.lock
 
 RUN pipenv install --system --deploy
 
+COPY uwsgi.ini /uwsgi.ini
+EXPOSE 5000
+
 COPY ./app /app
 WORKDIR /app
-
-COPY ./uwsgi.ini /uwsgi.ini
-EXPOSE 5000
 
 CMD [ "uwsgi", "--ini", "/uwsgi.ini" ]
