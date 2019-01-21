@@ -4,12 +4,12 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-nose = "*"
 pylint = "*"
 autopep8 = "*"
-coverage = "*"
 
 [packages]
+pytest = "*"
+pytest-cov = "*"
 
 [requires]
 python_version = "3.6"
