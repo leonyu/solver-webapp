@@ -13,6 +13,7 @@ pytest-cov = "*"
 [packages]
 sympy = "*"
 flask = "*"
+six = "*"
 
 [requires]
 python_version = "3.6"
