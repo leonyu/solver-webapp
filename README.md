@@ -2,15 +2,8 @@
 
 ## Run ##
 
-Via Python 2:
+Via Python 3:
 
 ```sh
-./main.py 100
-```
-
-Via Docker:
-
-```sh
-docker build . -t primality-test
-docker run primality-test 100
+python3 ./main.py 100
 ```
