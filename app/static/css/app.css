@@ -90,16 +90,11 @@ a {
   padding-top: 10px;
 }
 
-#qr-text {
-  text-align: center;
-  width: 100%;
-}
-
-#qr-code svg {
-  min-height: 50vmin; /* for IE9-11 height */
-}
-
 textarea {
   width: 100%;
   min-height: 200px;
+}
+
+.error-message {
+  color: red;
 }

@@ -1,7 +1,6 @@
-from typing import List, Dict
 from sympy import symbols, Eq, sympify, Symbol, solve
 
-def convert_variable(input: str) -> Symbol:
+def convert_variable(input):
     if not input or input.isspace():
         return None
     try:
@@ -9,7 +8,7 @@ def convert_variable(input: str) -> Symbol:
     except:
         return None
 
-def convert_equation(input: str) -> Eq:
+def convert_equation(input):
     if not input or input.isspace():
         return None
     lineSplit = input.split('=')
@@ -21,25 +20,17 @@ def convert_equation(input: str) -> Eq:
         return None # raise Exception('LHS and RHS of an equation must not be empty')
     return Eq(sympify(lhs), sympify(rhs))
 
-def create_solution_json(equation: Eq, target: Symbol, solution: list) -> Dict:
+def create_solution_json(equation, target, solution):
     equation_text = str(equation)
     variable_text = str(target)
     solution_list = list(map(lambda s: str(s), solution))
-    if len(solution_list) == 0:
-        message = 'No solutions'
-    elif len(solution_list) > 1:
-        message = 'There are multiple solutions'
-    else:
-        message = 'OK'
     return {
         "equation": equation_text,
         "target": variable_text,
-        "success": len(solution_list) == 1,
-        "solution": solution_list,
-        "message": message,
+        "solutions": solution_list,
     }
 
-def solve_for_variable(target: Symbol, equation: Eq) -> Dict:
+def solve_for_variable(target, equation):
     try:
         solution = solve(equation, target)
     except NotImplementedError:

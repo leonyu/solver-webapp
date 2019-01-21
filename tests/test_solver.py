@@ -1,5 +1,5 @@
 from sympy import Symbol, Eq
-from solver import solve_for_variable, convert_equation, convert_variable
+from app.solver import solve_for_variable, convert_equation, convert_variable
 import unittest
 
 class TestAppMethods(unittest.TestCase):
@@ -21,35 +21,36 @@ class TestAppMethods(unittest.TestCase):
 
     def test_solve_for_variable_success(self):
         result = solve_for_variable(convert_variable('a'), convert_equation('x + y * y = z / a'))
-        self.assertTrue(result['success'])
-        self.assertEqual(result['solution'], ['z/(x + y**2)'])
-        self.assertEqual(result['message'], 'OK')
+        self.assertEqual(result['solutions'], ['z/(x + y**2)'])
 
         result = solve_for_variable(convert_variable('z'), convert_equation('x + y * y = z / a'))
-        self.assertTrue(result['success'])
-        self.assertEqual(result['solution'], ['a*(x + y**2)'])
-        self.assertEqual(result['message'], 'OK')
+        self.assertEqual(result['solutions'], ['a*(x + y**2)'])
+
+        result = solve_for_variable(convert_variable('a'), convert_equation('log(a) + b = c'))
+        self.assertEqual(result['solutions'], ['exp(-b + c)'])
+
+    def test_solve_for_variable_multiple_solutions(self):
+        result = solve_for_variable(convert_variable('a'), convert_equation('x + y * y = z / a ** 2'))
+        self.assertEqual(result['solutions'], ['-sqrt(z/(x + y**2))', 'sqrt(z/(x + y**2))'])
 
     def test_solve_for_variable_failure(self):
         result = solve_for_variable(convert_variable('z'), convert_equation('cos(x) / tan(z) = z / a'))
-        self.assertFalse(result['success'])
-        self.assertEqual(result['solution'], [])
-        self.assertEqual(result['message'], 'No solutions')
+        self.assertEqual(result['solutions'], [])
 
         result = solve_for_variable(convert_variable('z'), convert_equation('a + b = c'))
-        self.assertFalse(result['success'])
-        self.assertEqual(result['solution'], [])
-        self.assertEqual(result['message'], 'No solutions')
+        self.assertEqual(result['solutions'], [])
 
         result = solve_for_variable(convert_variable('z'), convert_equation('a + b = c'))
-        self.assertFalse(result['success'])
-        self.assertEqual(result['solution'], [])
-        self.assertEqual(result['message'], 'No solutions')
+        self.assertEqual(result['solutions'], [])
 
         result = solve_for_variable(convert_variable('z'), convert_equation('a + b = c'))
-        self.assertFalse(result['success'])
-        self.assertEqual(result['solution'], [])
-        self.assertEqual(result['message'], 'No solutions')
+        self.assertEqual(result['solutions'], [])
+
+        result = solve_for_variable(convert_variable('='), convert_equation('a + b = c'))
+        self.assertEqual(result['solutions'], [])
+
+        result = solve_for_variable(convert_variable('log'), convert_equation('log(a) + b = c'))
+        self.assertEqual(result['solutions'], [])
 
 if __name__ == '__main__':
     unittest.main()
