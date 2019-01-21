@@ -45,8 +45,8 @@ jobs:
       - run:
           name: run tests
           command: |
-            pipenv run nosetests --with-coverage --cover-package=app --cover-html
+            pipenv run pytest --cov=app tests/ --cov-report html
 
       - store_artifacts:
-          path: cover
-          destination: cover
+          path: htmlcov
+          destination: htmlcov
