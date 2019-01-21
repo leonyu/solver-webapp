@@ -1,8 +1,9 @@
 from sympy import symbols, Eq, sympify, solve
+from six import string_types
 
 
 def convert_variable(text):
-    if not isinstance(text, str) or text.isspace():
+    if not isinstance(text, string_types) or text.isspace():
         return None
     try:
         return symbols(text)
@@ -11,7 +12,7 @@ def convert_variable(text):
 
 
 def convert_equation(text):
-    if not isinstance(text, str) or text.isspace():
+    if not isinstance(text, string_types) or text.isspace():
         return None
     line_split = text.split('=')
     if len(line_split) != 2:
