@@ -2,7 +2,7 @@ from sympy import symbols, Eq, sympify, solve
 
 
 def convert_variable(text):
-    if not text or text.isspace():
+    if type(text) is not str or text.isspace():
         return None
     try:
         return symbols(text)
@@ -11,7 +11,7 @@ def convert_variable(text):
 
 
 def convert_equation(text):
-    if not text or text.isspace():
+    if type(text) is not str or text.isspace():
         return None
     line_split = text.split('=')
     if len(line_split) != 2:

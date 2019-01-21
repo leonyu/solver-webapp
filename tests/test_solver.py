@@ -5,6 +5,10 @@ from app.solver import solve_for_variable, convert_equation, convert_variable
 
 class TestAppMethods(unittest.TestCase):
     def test_convert_variable(self):
+        result = convert_variable(' ')
+        self.assertIsNone(result)
+        result = convert_variable(True)
+        self.assertIsNone(result)
         abc = convert_variable('abc')
         self.assertIsInstance(abc, Symbol)
         self.assertEqual(str(abc), 'abc')
@@ -18,7 +22,12 @@ class TestAppMethods(unittest.TestCase):
 
     def test_convert_equation_failure(self):
         self.assertIsNone(convert_equation('a + b ='))
+        self.assertIsNone(convert_equation('a = b = c'))
+        self.assertIsNone(convert_equation('a == b'))
+        self.assertIsNone(convert_equation('a b'))
         self.assertIsNone(convert_equation(''))
+        self.assertIsNone(convert_equation(None))
+        self.assertIsNone(convert_equation(True))
 
     def test_solve_for_variable_success(self):
         result = solve_for_variable(convert_variable(
