@@ -1,27 +1,28 @@
 import random
-from modular_exponent import ModularExponent
+from typing import Tuple
+from .modular_exponent import ModularExponent
 
-ITERATIONS = 80
+ITERATIONS = 100
 
 
 class FermatPrimality:
     @staticmethod
-    def fermat(p, a):
+    def fermat(p: int, a: int) -> int:
         mod_exp = ModularExponent(base=a, modulus=p)
-        lhs =  mod_exp.compute(p - 1)
+        lhs = mod_exp.compute(p - 1)
         return lhs
 
     @staticmethod
-    def is_prime(p):
+    def is_prime(p: int) -> Tuple[bool, str]:
         if p < 2:
-            return False
+            return (False, 'Less than 2')
         if p == 2:
-            return True
+            return (True, 'Equals to 2')
 
-        for i in xrange(0, ITERATIONS):
+        for _ in range(0, ITERATIONS):
             a = random.randint(2, p - 1)
             fermat = FermatPrimality.fermat(p, a)
             # print a, fermat
-            if FermatPrimality.fermat(p, a) != 1:
-                return False
-        return True
+            if fermat != 1:
+                return (False, 'fermat {}'.format(a))
+        return (True, 'OK after {} iterations of fermat test'.format(ITERATIONS))

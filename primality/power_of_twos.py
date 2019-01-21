@@ -1,19 +1,21 @@
 
 import math
+from typing import List
 
-def split(number):
-    result = []
-    number = long(number)
+
+def split_by_powers_of_two(number: int) -> List[int]:
+    result: List[int] = []
     if number <= 0:
         return result
-    it = 2 ** long(math.log(number, 2))
-    while(it >= 1):
+    it = 2 ** int(math.log(number, 2))
+    while it >= 1:
         if number >= it:
             result.insert(0, it)
             number -= it
-        it = it / 2
+        it = it // 2
 
     return result
 
-def is_power_of_two(number):
-    return len(split(number)) == 1
+
+def is_power_of_two(n: int) -> bool:
+    return (n > 0) and (2 ** int(math.log(n, 2)) == n)

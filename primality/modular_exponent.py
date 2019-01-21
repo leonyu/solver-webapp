@@ -1,9 +1,9 @@
 
-import power_of_twos
+from .power_of_twos import split_by_powers_of_two, is_power_of_two
 
 
 class ModularExponent:
-    def __init__(self, base, modulus):
+    def __init__(self, base: int, modulus: int):
         self.base = base
         self.modulus = modulus
         self.cache = {
@@ -11,20 +11,20 @@ class ModularExponent:
             1: base % modulus
         }
 
-    def compute(self, exponent):
+    def compute(self, exponent: int) -> int:
         if exponent in self.cache:
             return self.cache[exponent]
-        elif power_of_twos.is_power_of_two(exponent):
-            h = self.compute(exponent / 2)
+        if is_power_of_two(exponent):
+            h = self.compute(exponent // 2)
             return h * h % self.modulus
-        else:
-            power_of_twos_split = power_of_twos.split(exponent)
-            result = 1
-            for exp in power_of_twos_split:
-                result *= self.compute(exp)
-            return result % self.modulus
+
+        power_of_twos_split = split_by_powers_of_two(exponent)
+        result = 1
+        for exp in power_of_twos_split:
+            result *= self.compute(exp)
+        return result % self.modulus
 
     @staticmethod
-    def exp(base, exponent, modulus):
+    def exp(base: int, exponent: int, modulus: int) -> int:
         instance = ModularExponent(base, modulus)
         return instance.compute(exponent)
