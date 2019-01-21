@@ -30,16 +30,22 @@ class TestAppMethods(unittest.TestCase):
         self.assertIsNone(convert_equation(True))
 
     def test_solve_for_variable_success(self):
-        result = solve_for_variable(convert_variable(
-            'a'), convert_equation('x + y * y = z / a'))
+        result = solve_for_variable(
+            convert_variable('a'),
+            convert_equation('x + y * y = z / a')
+        )
         self.assertEqual(result['solutions'], ['z/(x + y**2)'])
 
-        result = solve_for_variable(convert_variable(
-            'z'), convert_equation('x + y * y = z / a'))
+        result = solve_for_variable(
+            convert_variable('z'),
+            convert_equation('x + y * y = z / a')
+        )
         self.assertEqual(result['solutions'], ['a*(x + y**2)'])
 
-        result = solve_for_variable(convert_variable(
-            'a'), convert_equation('log(a) + b = c'))
+        result = solve_for_variable(
+            convert_variable('a'),
+            convert_equation('log(a) + b = c')
+        )
         self.assertEqual(result['solutions'], ['exp(-b + c)'])
 
     def test_solve_for_variable_multiple_solutions(self):
@@ -51,28 +57,40 @@ class TestAppMethods(unittest.TestCase):
         )
 
     def test_solve_for_variable_failure(self):
-        result = solve_for_variable(convert_variable(
-            'z'), convert_equation('cos(x) / tan(z) = z / a'))
+        result = solve_for_variable(
+            convert_variable('z'),
+            convert_equation('cos(x) / tan(z) = z / a')
+        )
         self.assertEqual(result['solutions'], [])
 
-        result = solve_for_variable(convert_variable(
-            'z'), convert_equation('a + b = c'))
+        result = solve_for_variable(
+            convert_variable('z'),
+            convert_equation('a + b = c')
+        )
         self.assertEqual(result['solutions'], [])
 
-        result = solve_for_variable(convert_variable(
-            'z'), convert_equation('a + b = c'))
+        result = solve_for_variable(
+            convert_variable('z'),
+            convert_equation('a + b = c')
+        )
         self.assertEqual(result['solutions'], [])
 
-        result = solve_for_variable(convert_variable(
-            'z'), convert_equation('a + b = c'))
+        result = solve_for_variable(
+            convert_variable('z'),
+            convert_equation('a + b = c')
+        )
         self.assertEqual(result['solutions'], [])
 
-        result = solve_for_variable(convert_variable(
-            '='), convert_equation('a + b = c'))
+        result = solve_for_variable(
+            convert_variable('='),
+            convert_equation('a + b = c')
+        )
         self.assertEqual(result['solutions'], [])
 
-        result = solve_for_variable(convert_variable(
-            'log'), convert_equation('log(a) + b = c'))
+        result = solve_for_variable(
+            convert_variable('log'),
+            convert_equation('log(a) + b = c')
+        )
         self.assertEqual(result['solutions'], [])
 
 
