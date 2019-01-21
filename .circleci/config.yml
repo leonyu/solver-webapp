@@ -45,8 +45,7 @@ jobs:
       - run:
           name: run tests
           command: |
-            pipenv run nosetests --with-coverage --cover-html
-
+            pipenv run nosetests --with-coverage --cover-package=primality --cover-html
 
       - store_artifacts:
           path: cover
