@@ -1,3 +1,4 @@
+import re
 from sympy import symbols, Eq, sympify, solve
 from six import string_types
 
@@ -14,7 +15,7 @@ def convert_variable(text):
 def convert_equation(text):
     if not isinstance(text, string_types) or text.isspace():
         return None
-    line_split = text.split('=')
+    line_split = re.split(r'=+', text)
     if len(line_split) != 2:
         # raise Exception('Line does not contain a valid equation')
         return None
