@@ -4,12 +4,13 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-pylint = "*"
 autopep8 = "*"
-
-[packages]
+mypy = "*"
+pylint = "*"
 pytest = "*"
 pytest-cov = "*"
+
+[packages]
 
 [requires]
 python_version = "3.6"

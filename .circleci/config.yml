@@ -42,10 +42,10 @@ jobs:
             pipenv check
 
       - run:
-          name: pylint
+          name: pylint && mypy
           command: |
-            pipenv run pylint primality
-            pipenv run pylint tests
+            pipenv run pylint primality tests
+            pipenv run mypy --strict primality tests
 
       - run:
           name: pytest
