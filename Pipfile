@@ -9,11 +9,13 @@ pylint = "*"
 autopep8 = "*"
 pytest = "*"
 pytest-cov = "*"
+mypy = "*"
 
 [packages]
 sympy = "*"
 flask = "*"
 six = "*"
+typing = "*"
 
 [requires]
 python_version = "3.6"

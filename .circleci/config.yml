@@ -44,8 +44,9 @@ jobs:
       - run:
           name: pylint
           command: |
-            pipenv run pylint webapp
-            pipenv run pylint tests
+            pipenv run pylint webapp tests
+            pipenv run mypy --strict webapp tests
+
 
       - run:
           name: pytest

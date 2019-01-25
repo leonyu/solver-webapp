@@ -1,9 +1,11 @@
 import re
-from sympy import symbols, Eq, sympify, solve
+from typing import List, Dict, Any
 from six import string_types
+from sympy import symbols, Eq, sympify, solve, Symbol  # type: ignore
 
 
 def convert_variable(text):
+    # type: (str) -> Symbol
     if not isinstance(text, string_types) or text.isspace():
         return None
     try:
@@ -13,6 +15,7 @@ def convert_variable(text):
 
 
 def convert_equation(text):
+    # type: (str) -> Eq
     if not isinstance(text, string_types) or text.isspace():
         return None
     line_split = re.split(r'=+', text)
@@ -28,6 +31,7 @@ def convert_equation(text):
 
 
 def create_solution_json(equation, target, solution):
+    # type: (Eq, Symbol, List[Any]) -> Dict[str, Any]
     equation_text = str(equation)
     variable_text = str(target)
     solution_list = list(map(str, solution))
@@ -39,6 +43,7 @@ def create_solution_json(equation, target, solution):
 
 
 def solve_for_variable(target, equation):
+    # type: (Symbol, Eq) -> Dict[str, Any]
     try:
         solution = solve(equation, target)
     except NotImplementedError:
