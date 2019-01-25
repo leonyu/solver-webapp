@@ -3,7 +3,8 @@ from .power_of_twos import split_by_powers_of_two, is_power_of_two
 
 
 class ModularExponent:
-    def __init__(self, base: int, modulus: int):
+    def __init__(self, base, modulus):
+        # type: (int, int) -> None
         self.base = base
         self.modulus = modulus
         self.cache = {
@@ -11,7 +12,8 @@ class ModularExponent:
             1: base % modulus
         }
 
-    def compute(self, exponent: int) -> int:
+    def compute(self, exponent):
+        # type: (int) -> int
         if exponent in self.cache:
             return self.cache[exponent]
         if is_power_of_two(exponent):
@@ -25,6 +27,7 @@ class ModularExponent:
         return result % self.modulus
 
     @staticmethod
-    def exp(base: int, exponent: int, modulus: int) -> int:
+    def exp(base, exponent, modulus):
+        # type: (int, int, int) -> int
         instance = ModularExponent(base, modulus)
         return instance.compute(exponent)

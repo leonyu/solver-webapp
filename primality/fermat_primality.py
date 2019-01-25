@@ -6,14 +6,20 @@ ITERATIONS = 100
 
 
 class FermatPrimality:
+    def __init__(self):
+        # type: () -> None
+        pass
+
     @staticmethod
-    def fermat(p: int, a: int) -> int:
+    def fermat(p, a):
+        # type: (int, int) -> int
         mod_exp = ModularExponent(base=a, modulus=p)
         lhs = mod_exp.compute(p - 1)
         return lhs
 
     @staticmethod
-    def is_prime(p: int) -> Tuple[bool, str]:
+    def is_prime(p):
+        # type: (int) -> Tuple[bool, str]
         if p < 2:
             return (False, 'Less than 2')
         if p == 2:
