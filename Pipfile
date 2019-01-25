@@ -14,8 +14,6 @@ mypy = "*"
 [packages]
 sympy = "*"
 flask = "*"
-six = "*"
-typing = "*"
 
 [requires]
 python_version = "3.6"
