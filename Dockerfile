@@ -1,6 +1,6 @@
 FROM alpine:latest AS builder
 
-RUN apk add --no-cache python3
+RUN apk add --no-cache py3-gunicorn
 
 RUN pip3 install pipenv
 
@@ -14,7 +14,7 @@ RUN pipenv lock -r > /stage/requirements.txt
 
 FROM alpine:latest
 
-RUN apk add --no-cache python3
+RUN apk add --no-cache py3-gunicorn
 
 COPY --from=builder /stage/requirements.txt /requirements.txt
 

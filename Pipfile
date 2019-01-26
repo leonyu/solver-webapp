@@ -12,7 +12,6 @@ pytest-cov = "*"
 
 [packages]
 flask = "*"
-gunicorn = "*"
 six = "*"
 sympy = "*"
 typing = "*"
