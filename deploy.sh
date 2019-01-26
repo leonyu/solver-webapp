@@ -2,7 +2,7 @@
 
 set -e
 
-APP_NAME='equation-solver'
+APP_NAME='solver-webapp'
 
 BRANCH_NAME="$(git rev-parse --abbrev-ref HEAD)"
 REPOSITORY_URI="$(aws ecr describe-repositories --repository-names $APP_NAME --output text | awk '{print $NF}')"
