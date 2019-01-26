@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a1fb83ffbc5f67016d5ab8d99cb86ac22a55cff9ffed4662f8508bc84b2bcbbb"
+            "sha256": "35b4acfb55dafb17663b4638985fddbf0f9926ff2ffe0b7aa1141b1778bdc75b"
         },
         "pipfile-spec": 6,
         "requires": {},
@@ -28,6 +28,14 @@
             ],
             "index": "pypi",
             "version": "==1.0.2"
+        },
+        "gunicorn": {
+            "hashes": [
+                "sha256:aa8e0b40b4157b36a5df5e599f45c9c76d6af43845ba3b3b0efe2c70473c2471",
+                "sha256:fa2662097c66f920f53f70621c6c58ca4a3c4d3434205e608e121b5b3b71f4f3"
+            ],
+            "index": "pypi",
+            "version": "==19.9.0"
         },
         "itsdangerous": {
             "hashes": [
@@ -330,14 +338,6 @@
             ],
             "markers": "python_version < '3.7' and implementation_name == 'cpython'",
             "version": "==1.2.0"
-        },
-        "uwsgi-tools": {
-            "hashes": [
-                "sha256:565e10945c50ed6f4378168a2a609bb7d1c2c5b21ab23edd1ad5f73d15ab6356",
-                "sha256:7d557c83b1803962ea73c2f19688b0d5e7d212f382d0a1a0a4586ae0f34f4cb2"
-            ],
-            "index": "pypi",
-            "version": "==1.1.1"
         },
         "wrapt": {
             "hashes": [

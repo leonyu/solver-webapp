@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk add --no-cache uwsgi-python3
+RUN apk add --no-cache python3
 RUN pip3 install pipenv
 
 COPY . /app
@@ -10,4 +10,4 @@ RUN pipenv install --system --deploy
 
 EXPOSE 5000
 
-CMD [ "uwsgi", "--ini", "/app/uwsgi.ini" ]
+CMD [ "gunicorn", "run:app" ]

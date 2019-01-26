@@ -9,10 +9,10 @@ mypy = "*"
 pylint = "*"
 pytest = "*"
 pytest-cov = "*"
-uwsgi-tools = "*"
 
 [packages]
 flask = "*"
+gunicorn = "*"
 six = "*"
 sympy = "*"
 typing = "*"
