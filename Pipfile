@@ -4,14 +4,14 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-uwsgi-tools = "*"
-pylint = "*"
 autopep8 = "*"
+mypy = "*"
+pylint = "*"
 pytest = "*"
 pytest-cov = "*"
-mypy = "*"
+uwsgi-tools = "*"
 
 [packages]
-sympy = "*"
 flask = "*"
 six = "*"
+sympy = "*"
