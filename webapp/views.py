@@ -17,20 +17,20 @@ def root():
 def api_is_prime():
     # type: () -> bool
     try:
-        input = int(request.form.get('input'))
+        num = int(request.form.get('input'))
     except ValueError:
         pass
 
-    if input is None:
+    if num is None:
         return jsonify({
             'success': False,
             'message': 'Must provide valid equation and target variable',
-            'input': input
+            'input': num
         })
 
     result = {
-        'result': FermatPrimality().is_prime(input),
-        'input': input
+        'result': FermatPrimality().is_prime(num),
+        'input': num
     }
     return jsonify(result)
 
