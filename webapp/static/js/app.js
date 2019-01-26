@@ -1,5 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
   const $form = document.querySelector('form');
+  const $textarea = document.querySelector('textarea');
+  const $submitButton = document.querySelector('input[type="submit"]');
+
+  updateViewState($form, $textarea, $submitButton);
+
+  $textarea.addEventListener('input', (evt) => {
+    updateViewState($form, $textarea, $submitButton);
+  })
 
   $form.addEventListener('submit', (evt) => {
     evt.preventDefault();
@@ -12,6 +20,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+function updateViewState($form, $textarea, $submitButton) {
+  const textContent = $textarea.value ? $textarea.value.trim() : '';
+  if (/^\w.*=.*\w$/.test(textContent)) {
+    $form.classList.remove('is-number');
+    $form.classList.add('is-formula')
+    $form.action = '/api/solve';
+    $submitButton.disabled = false;
+  } else if (/^\d+$/.test(textContent)) {
+    $form.classList.remove('is-formula');
+    $form.classList.add('is-number')
+    $form.action = '/api/is_prime';
+    $submitButton.disabled = false;
+  } else {
+    $form.classList.remove('is-formula', 'is-number');
+    $form.action = '';
+    $submitButton.disabled = true;
+  }
+}
 
 function renderSolution(solutions) {
   const $errorMessage = document.querySelector('.error-message');

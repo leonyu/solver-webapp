@@ -98,3 +98,11 @@ textarea {
 .error-message {
   color: red;
 }
+
+.target-row {
+  display: none;
+}
+
+.is-formula .target-row {
+  display: block;
+}

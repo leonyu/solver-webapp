@@ -29,9 +29,16 @@ def api_is_prime():
             'input': num
         })
 
+    success, reason = FermatPrimality().is_prime(num)
+    if success:
+        solution = '{num} is a prime number'.format(num=num)
+    else:
+        solution = '{num} is NOT a prime number'.format(num=num)
     result = {
-        'result': FermatPrimality().is_prime(num),
-        'input': num
+        'success': True,
+        'input': num,
+        'solutions': [solution],
+        'message': reason,
     }
     return jsonify(result)
 
@@ -39,12 +46,12 @@ def api_is_prime():
 @app.route('/api/solve', methods=['POST'])  # type: ignore
 def api_solve():
     # type: () -> Any
+    equation = convert_equation(request.form.get('input'))
     target = convert_variable(request.form.get('target'))
-    equation = convert_equation(request.form.get('equation'))
     if equation is None or target is None:
         return jsonify({
             'success': False,
-            'message': 'Must provide valid equation and target variable'
+            'message': 'Must provide valid equation and target variable',
         })
 
     result = solve_for_variable(target, equation)

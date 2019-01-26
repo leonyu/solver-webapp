@@ -16,18 +16,18 @@
 <body>
   <div class="page-container">
     <div class="header margin-restraint">
-      <h2>Equation Solver</h2>
+      <h2>Prime Checker / Equation Solver</h2>
     </div>
     <div class="content margin-restraint">
-      <form action="/api/solve" method="POST" enctype="multipart/form-data">
+      <form method="POST" enctype="multipart/form-data">
         <div>
-          <textarea name="equation">x + y * y = z / a</textarea>
+          <textarea name="input">x + y * y = z / a</textarea>
         </div>
-        <div>
+        <div class="target-row">
           <label>Solve for:<input type="text" name="target" value="a"></label>
         </div>
         <div>
-          <input type="submit" value="Solve"> <span class="error-message"></span>
+          <input type="submit" disabled="disabled" value="Solve"> <span class="error-message"></span>
         </div>
       </form>
       <ul class="solution"></ul>
