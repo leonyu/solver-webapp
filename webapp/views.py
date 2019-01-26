@@ -16,7 +16,7 @@ def root():
 
 @app.route('/api/is_prime', methods=['POST'])  # type: ignore
 def api_is_prime():
-    # type: () -> bool
+    # type: () -> Any
     try:
         num = int(request.form.get('input'))
     except ValueError:
