@@ -2,7 +2,8 @@
 from typing import Any
 from flask import Flask, render_template, request, jsonify # type: ignore
 
-from .solver import solve_for_variable, convert_equation, convert_variable
+from util.solver.solver import solve_for_variable, convert_equation, convert_variable
+from util.primality.fermat_primality import FermatPrimality
 
 app = Flask(__name__)
 
@@ -11,6 +12,27 @@ app = Flask(__name__)
 def root():
     # type: () -> Any
     return render_template('index.html')
+
+@app.route('/api/is_prime', methods=['POST']) # type: ignore
+def api_is_prime():
+    # type: () -> bool
+    try:
+        input = int(request.form.get('input'))
+    except ValueError:
+        pass
+
+    if input is None:
+        return jsonify({
+            'success': False,
+            'message': 'Must provide valid equation and target variable',
+            'input': input
+        })
+
+    result = {
+        'result': FermatPrimality().is_prime(input),
+        'input': input
+    }
+    return jsonify(result)
 
 
 @app.route('/api/solve', methods=['POST']) # type: ignore

@@ -1,7 +1,7 @@
 import unittest
 from typing import Any
 from sympy import Symbol, Eq # type: ignore
-from webapp.solver import solve_for_variable, convert_equation, convert_variable
+from util.solver.solver import solve_for_variable, convert_equation, convert_variable
 
 
 class TestAppMethods(unittest.TestCase):

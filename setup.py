@@ -5,7 +5,7 @@ setuptools.setup(
     version="0.0.1",
     author="Leon Yu",
     author_email="leon@leonyu.net",
-    description="Equation Solver",
+    description="Math Webapp",
     long_description="SymPy-based Equation Solver Flask Web App",
     long_description_content_type="text/plain",
     url="https://bitbucket.org/voidvector/equation-solver/",

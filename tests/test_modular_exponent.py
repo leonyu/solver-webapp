@@ -1,6 +1,6 @@
 
 import unittest
-from primality.modular_exponent import ModularExponent
+from util.primality.modular_exponent import ModularExponent
 
 
 class TestModularExponent(unittest.TestCase):

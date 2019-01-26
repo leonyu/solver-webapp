@@ -44,14 +44,15 @@ jobs:
       - run:
           name: pylint
           command: |
-            pipenv run pylint webapp tests
-            pipenv run mypy --strict webapp tests
+            pipenv run pylint util webapp tests
+            pipenv run mypy --strict util webapp tests
 
 
       - run:
           name: pytest
           command: |
-            pipenv run pytest --cov=webapp tests/ --cov-report html
+            pipenv run pytest --cov=util webapp tests/ --cov-report html
+
 
       - store_artifacts:
           path: htmlcov
