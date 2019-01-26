@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function updateViewState($form, $textarea, $submitButton) {
   const textContent = $textarea.value ? $textarea.value.trim() : '';
-  if (/^\w.*=.*\w$/.test(textContent)) {
+  if (/^\S.*=.*\S$/.test(textContent)) {
     $form.classList.remove('is-number');
     $form.classList.add('is-formula')
     $form.action = '/api/solve';
