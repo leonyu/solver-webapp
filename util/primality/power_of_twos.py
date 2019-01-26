@@ -5,7 +5,7 @@ from typing import List
 
 def split_by_powers_of_two(number):
     # type: (int) -> List[int]
-    result = [] # type: List[int]
+    result = []  # type: List[int]
     if number <= 0:
         return result
     it = 2 ** int(math.log(number, 2))

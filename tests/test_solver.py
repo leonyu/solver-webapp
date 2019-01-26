@@ -1,6 +1,6 @@
 import unittest
 from typing import Any
-from sympy import Symbol, Eq # type: ignore
+from sympy import Symbol, Eq  # type: ignore
 from util.solver.solver import solve_for_variable, convert_equation, convert_variable
 
 
@@ -9,7 +9,7 @@ class TestAppMethods(unittest.TestCase):
         # type: () -> None
         result = convert_variable(' ')
         self.assertIsNone(result)
-        result = convert_variable(True) # type: ignore
+        result = convert_variable(True)  # type: ignore
         self.assertIsNone(result)
         abc = convert_variable('abc')
         self.assertIsInstance(abc, Symbol)
@@ -39,8 +39,8 @@ class TestAppMethods(unittest.TestCase):
         self.assertIsNone(convert_equation('a = b = c'))
         self.assertIsNone(convert_equation('a b'))
         self.assertIsNone(convert_equation(''))
-        self.assertIsNone(convert_equation(None)) # type: ignore
-        self.assertIsNone(convert_equation(True)) # type: ignore
+        self.assertIsNone(convert_equation(None))  # type: ignore
+        self.assertIsNone(convert_equation(True))  # type: ignore
 
     def test_solve_for_variable_success(self):
         # type: () -> None

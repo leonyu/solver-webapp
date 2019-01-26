@@ -1,6 +1,6 @@
 
 from typing import Any
-from flask import Flask, render_template, request, jsonify # type: ignore
+from flask import Flask, render_template, request, jsonify  # type: ignore
 
 from util.solver.solver import solve_for_variable, convert_equation, convert_variable
 from util.primality.fermat_primality import FermatPrimality
@@ -8,12 +8,13 @@ from util.primality.fermat_primality import FermatPrimality
 app = Flask(__name__)
 
 
-@app.route('/') # type: ignore
+@app.route('/')  # type: ignore
 def root():
     # type: () -> Any
     return render_template('index.html')
 
-@app.route('/api/is_prime', methods=['POST']) # type: ignore
+
+@app.route('/api/is_prime', methods=['POST'])  # type: ignore
 def api_is_prime():
     # type: () -> bool
     try:
@@ -35,7 +36,7 @@ def api_is_prime():
     return jsonify(result)
 
 
-@app.route('/api/solve', methods=['POST']) # type: ignore
+@app.route('/api/solve', methods=['POST'])  # type: ignore
 def api_solve():
     # type: () -> Any
     target = convert_variable(request.form.get('target'))
