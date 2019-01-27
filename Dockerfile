@@ -22,10 +22,10 @@ RUN pip3 install -r /requirements.txt
 
 COPY /util /app/util
 COPY /webapp /app/webapp
-COPY /run.py /app/run.py
+COPY /app.py /app/app.py
 
 WORKDIR /app
 EXPOSE 5000
 USER nobody
 
-CMD [ "gunicorn", "--bind=:5000", "--workers=2", "run:app" ]
+CMD [ "gunicorn", "--bind=:5000", "--workers=2", "app:app" ]
