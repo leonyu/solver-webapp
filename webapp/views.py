@@ -2,8 +2,8 @@
 from typing import Any
 from flask import Flask, render_template, request, jsonify  # type: ignore
 
-from util.solver.solver import solve_for_variable, convert_equation, convert_variable
-from util.primality.fermat_primality import FermatPrimality
+from utils.solver.solver import solve_for_variable, convert_equation, convert_variable
+from utils.primality.fermat_primality import FermatPrimality
 
 app = Flask(__name__)
 

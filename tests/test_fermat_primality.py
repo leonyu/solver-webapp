@@ -1,6 +1,6 @@
 
 import unittest
-from util.primality.fermat_primality import FermatPrimality
+from utils.primality.fermat_primality import FermatPrimality
 
 
 class TestFermatPrimality(unittest.TestCase):

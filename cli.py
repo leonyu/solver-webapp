@@ -1,7 +1,7 @@
 
 import sys
 
-from util.primality.fermat_primality import FermatPrimality
+from utils.primality.fermat_primality import FermatPrimality
 
 
 def main(argv):

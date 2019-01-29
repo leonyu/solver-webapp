@@ -1,6 +1,6 @@
 
 import unittest
-import util.primality.power_of_twos as power_of_twos
+import utils.primality.power_of_twos as power_of_twos
 
 
 class TestPowerOfTwos(unittest.TestCase):
