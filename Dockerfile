@@ -20,7 +20,7 @@ COPY --from=builder /stage/requirements.txt /requirements.txt
 
 RUN pip3 install -r /requirements.txt
 
-COPY /util /app/util
+COPY /utils /app/utils
 COPY /webapp /app/webapp
 COPY /app.py /app/app.py
 
