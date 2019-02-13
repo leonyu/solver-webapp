@@ -1,9 +1,8 @@
-# Primality Test #
+# Solver Webapp #
 
-## Run ##
-
-Via Python 3:
+Run via Docker:
 
 ```sh
-python3 ./main.py 100
+docker build -t solver-webapp
+docker run -it solver-webapp
 ```
