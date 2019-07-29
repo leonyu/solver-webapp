@@ -1,6 +1,6 @@
 
 from typing import Any
-from flask import Flask, render_template, request, jsonify  # type: ignore
+from flask import Flask, render_template, request, jsonify
 
 from utils.solver.solver import solve_for_variable, convert_equation, convert_variable
 from utils.primality.fermat_primality import FermatPrimality
@@ -8,17 +8,17 @@ from utils.primality.fermat_primality import FermatPrimality
 app = Flask(__name__)
 
 
-@app.route('/')  # type: ignore
+@app.route('/')
 def root():
     # type: () -> Any
     return render_template('index.html')
 
 
-@app.route('/api/is_prime', methods=['POST'])  # type: ignore
+@app.route('/api/is_prime', methods=['POST'])
 def api_is_prime():
     # type: () -> Any
     try:
-        num = int(request.form.get('input'))
+        num = int(str(request.form.get('input')))
     except ValueError:
         pass
 
@@ -43,11 +43,11 @@ def api_is_prime():
     return jsonify(result)
 
 
-@app.route('/api/solve', methods=['POST'])  # type: ignore
+@app.route('/api/solve', methods=['POST'])
 def api_solve():
     # type: () -> Any
-    equation = convert_equation(request.form.get('input'))
-    target = convert_variable(request.form.get('target'))
+    equation = convert_equation(str(request.form.get('input')))
+    target = convert_variable(str(request.form.get('target')))
     if equation is None or target is None:
         return jsonify({
             'success': False,
