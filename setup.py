@@ -1,6 +1,6 @@
-import setuptools
+from setuptools import setup, find_packages
 
-setuptools.setup(
+setup(
     name="equation_solver",
     version="0.0.1",
     author="Leon Yu",
@@ -9,6 +9,6 @@ setuptools.setup(
     long_description="SymPy-based Equation Solver Flask Web App",
     long_description_content_type="text/plain",
     url="https://bitbucket.org/voidvector/equation-solver/",
-    packages=setuptools.find_packages(),
+    packages=find_packages(),
     classifiers=[],
 )
