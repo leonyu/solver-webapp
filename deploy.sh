@@ -5,7 +5,8 @@ set -e
 APP_NAME='solver-webapp'
 
 BRANCH_NAME="$(git rev-parse --abbrev-ref HEAD)"
-REPOSITORY_URI="$(aws ecr describe-repositories --repository-names $APP_NAME --output text | awk '{print $NF}')"
+REPOSITORY_JSON=$(aws ecr describe-repositories --repository-names $APP_NAME --output json)
+REPOSITORY_URI=$(echo "$REPOSITORY_JSON" | python3 -c 'import json, sys; print(json.load(sys.stdin)["repositories"][0]["repositoryUri"])')
 
 if [ "$BRANCH_NAME" == 'HEAD' ]; then
     echo 'Not on a git branch'
