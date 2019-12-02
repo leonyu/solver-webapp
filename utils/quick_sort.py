@@ -1,14 +1,18 @@
-﻿
+from typing import Iterable, List, Optional
+
 class QuickSort():
     def __init__(self, data):
+        # type: (Iterable[int]) -> None
         self.data = list(data)
 
     def swap(self, left, right):
+        # type: (int, int) -> None
         temp = self.data[left]
         self.data[left] = self.data[right]
         self.data[right] = temp
 
     def partition(self, left, right):
+        # type: (int, int) -> Optional[int]
         if left >= right:
             return None
 
@@ -27,6 +31,7 @@ class QuickSort():
         return left
 
     def partition_forward(self, left, right):
+        # type: (int, int) -> Optional[int]
         if left >= right:
             return None
 
@@ -45,10 +50,9 @@ class QuickSort():
         return left
 
     def sort(self, left=0, right=None):
+        # type: (int, Optional[int]) -> List[int]
         if right is None:
             right = len(self.data) - 1
-        if left == right:
-            return self.data
         pivot = self.partition(left, right)
         if pivot is not None:
             self.sort(left, pivot - 1)
@@ -56,11 +60,18 @@ class QuickSort():
         return self.data
 
     def select(self, n, left=0, right=None):
+        # type: (int, int, Optional[int]) -> Optional[int]
         if right is None:
             right = len(self.data) - 1
+        if n < 0:
+            n += len(self.data)
+        if n < left or n > right:
+            return None
         if left == right:
-            return self.data
+            return self.data[left]
         pivot = self.partition(left, right)
+        if pivot is None:
+            return None
         if pivot > n:
             self.select(n, left, pivot - 1)
             return self.data[n]
