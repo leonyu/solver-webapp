@@ -23,9 +23,8 @@ class QuickSort():
         if self.data[left] < self.data[pivot]:
             self.swap(left + 1, pivot)
             return left + 1
-        else:
-            self.swap(left, pivot)
-            return left
+        self.swap(left, pivot)
+        return left
 
     def partition_forward(self, left, right):
         if left >= right:
@@ -42,9 +41,8 @@ class QuickSort():
         if self.data[left] > self.data[pivot]:
             self.swap(left - 1, pivot)
             return left - 1
-        else:
-            self.swap(left, pivot)
-            return left
+        self.swap(left, pivot)
+        return left
 
     def sort(self, left=0, right=None):
         if right is None:
@@ -66,8 +64,7 @@ class QuickSort():
         if pivot > n:
             self.select(n, left, pivot - 1)
             return self.data[n]
-        elif pivot < n:
+        if pivot < n:
             self.select(n, pivot + 1, right)
             return self.data[n]
-        else:
-            return self.data[n]
+        return self.data[n]
