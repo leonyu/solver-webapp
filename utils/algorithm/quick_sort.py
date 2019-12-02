@@ -1,6 +1,6 @@
 from typing import Iterable, List, Optional
 
-class QuickSort():
+class QuickSort:
     def __init__(self, data):
         # type: (Iterable[int]) -> None
         self.data = list(data)

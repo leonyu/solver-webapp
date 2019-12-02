@@ -1,8 +1,8 @@
 import unittest
 import random
-from utils.quick_sort import QuickSort
+from utils.algorithm.quick_sort import QuickSort
 
-class TestQuickSortMethods(unittest.TestCase):
+class TestQuickSort(unittest.TestCase):
     def test_no_data(self):
         # type: () -> None
         self.assertListEqual(QuickSort([]).sort(), [])
@@ -27,7 +27,7 @@ class TestQuickSortMethods(unittest.TestCase):
 
     def test_random(self):
         # type: () -> None
-        random_sample = list(map(lambda x: int(x / 2), range(0, 100)))
+        random_sample = [int(x / 2) for x in range(0, 100)]
         expected = list(random_sample)
         random.shuffle(random_sample)
         self.assertListEqual(QuickSort(random_sample).sort(), expected)
@@ -42,7 +42,7 @@ class TestQuickSortMethods(unittest.TestCase):
         self.assertEqual(QuickSort([1]).select(-2), None)
 
         r = random.randint(0, 99)
-        random_sample = list(map(lambda x: int(x / 2), range(0, 100)))
+        random_sample = [int(x / 2) for x in range(0, 100)]
         expected = list(random_sample)
         random.shuffle(random_sample)
         self.assertEqual(QuickSort(random_sample).select(r), expected[r])
