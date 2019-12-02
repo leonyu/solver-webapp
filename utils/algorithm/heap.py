@@ -1,10 +1,10 @@
 
-from typing import Iterable
+from typing import Iterable, Optional
 
 
 class MaxHeap:
     def __init__(self, data=()):
-        # type: (Iterable[init]) -> None
+        # type: (Iterable[int]) -> None
         self.data = list(data)
         last_parent = int(len(self.data) / 2) - 1
         for i in range(last_parent, -1, -1):
@@ -24,9 +24,11 @@ class MaxHeap:
         return result
 
     def peak(self):
+        # type: () -> int
         return self.data[0]
 
     def get_larger_branch(self, idx):
+        # type: (int) -> Optional[int]
         length = len(self.data)
         left = 2 * idx + 1
         right = 2 * idx + 2

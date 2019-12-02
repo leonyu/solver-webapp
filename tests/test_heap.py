@@ -1,11 +1,11 @@
 import unittest
 import random
+from typing import List
 from utils.algorithm.heap import MaxHeap
-
 
 class TestMaxHeap(unittest.TestCase):
     def assertIsHeap(self, array):
-        # type: (List[int]) -> bool
+        # type: (List[int]) -> None
         length = len(array)
         if length > 0:
             self.assertEqual(array[0], max(array))
