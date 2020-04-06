@@ -1,19 +1,20 @@
-FROM alpine:latest AS builder
-
+FROM alpine:3.11 AS builder
 RUN apk add --no-cache py3-gunicorn
 
 RUN pip3 install pipenv
 
-COPY /Pipfile /stage/Pipfile
-COPY /Pipfile.lock /stage/Pipfile.lock
+COPY / /stage
 WORKDIR /stage
 
 ENV LANG=C.UTF-8
+RUN pipenv install --dev
 RUN pipenv check
+RUN pipenv run pylint utils webapp tests
+RUN pipenv run mypy --strict utils webapp tests
+RUN pipenv run pytest
 RUN pipenv lock -r > /stage/requirements.txt
 
-FROM alpine:latest
-
+FROM alpine:3.11
 RUN apk add --no-cache py3-gunicorn
 
 COPY --from=builder /stage/requirements.txt /requirements.txt
