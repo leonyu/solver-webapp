@@ -6,6 +6,7 @@ from utils.solver.solver import solve_for_variable, convert_equation, convert_va
 from utils.primality.fermat_primality import FermatPrimality
 
 app = Flask(__name__)
+app.config['APPLICATION_ROOT'] = '/solver/'
 
 
 @app.route('/')

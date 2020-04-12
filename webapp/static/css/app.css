@@ -3,7 +3,8 @@
 }
 
 body {
-  font-family: Inconsolata, Consolas, Menlo, 'DejaVu Sans Mono', 'Andale Mono', sans-serif;
+  font-family: "Roboto Mono", Consolas, Menlo, 'DejaVu Sans Mono', 'Andale Mono', sans-serif;
+  font-size: 10pt;
   color: #222;
   background-color: #eee;
   padding-top: 10px;
@@ -57,10 +58,6 @@ a {
 .header h2, .header h3 {
   font-size: 14pt;
   margin: 0;
-}
-
-.header h2 {
-  text-transform: uppercase;
 }
 
 .header h3 {
