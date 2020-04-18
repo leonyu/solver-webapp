@@ -18,6 +18,7 @@ node_modules
 
 .dockerignore
 .editorconfig
+.mypy_cache
 .pylintrc
 .vscode
 Dockerfile
@@ -26,7 +27,7 @@ Pipfile.lock
 README.md
 app.py
 cli.py
-deploy.sh
+deploy-serverless.sh
 setup.py
 tests
 tox.ini
