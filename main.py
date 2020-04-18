@@ -1,11 +1,12 @@
 
-from flask import jsonify, request
+from flask import jsonify, Request
+from typing import List, Dict, Any
 
 from utils.solver.solver import solve_for_variable, convert_equation, convert_variable
 from utils.primality.fermat_primality import FermatPrimality
 
 def is_prime(req):
-    # type: (request) -> Any
+    # type: (Request) -> Any
     try:
         num = int(str(req.values.get('input')))
     except ValueError:
@@ -32,7 +33,7 @@ def is_prime(req):
     return jsonify(result)
 
 def solve(req):
-    # type: (request) -> Any
+    # type: (Request) -> Any
     equation = convert_equation(str(req.values.get('input')))
     target = convert_variable(str(req.values.get('target')))
     if equation is None or target is None:
